@@ -1,0 +1,682 @@
+basePath: /api/v1
+consumes:
+    - application/json
+definitions:
+    DataResponse:
+        properties:
+            record:
+                x-go-name: Record
+            records:
+                x-go-name: Records
+        type: object
+        x-go-name: data
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/base
+    LoginRequestBody:
+        properties:
+            password:
+                description: |-
+                    Password of user
+                    in: string
+                type: string
+                x-go-name: Password
+            username:
+                description: |-
+                    Username of user
+                    in: string
+                type: string
+                x-go-name: Username
+        required:
+            - username
+            - password
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/request
+    LoginResponse:
+        properties:
+            token:
+                description: |-
+                    Token
+                    in: string
+                example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3MDY1ODMwNTYsInVzZXIiOiJhZG1pbiJ9.F-bBdILVQIg9kj8mWGn5ma7qDoyzSbiUojQz6EW_hJs
+                type: string
+                x-go-name: Token
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/response
+    MetaResponse:
+        properties:
+            code:
+                description: |-
+                    Code is the response code
+                    in: int
+                format: int64
+                type: integer
+                x-go-name: Code
+            message:
+                description: |-
+                    Message is the response message
+                    in: string
+                type: string
+                x-go-name: Message
+            pagination:
+                $ref: '#/definitions/PaginationResponse'
+        type: object
+        x-go-name: metaResponse
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/base
+    MetaSingleSuccessResponse:
+        properties:
+            code:
+                description: |-
+                    Code of Response
+                    in: int
+                example: 1000
+                format: int64
+                type: integer
+                x-go-name: Code
+            message:
+                description: |-
+                    Message of Response
+                    in: string
+                example: Success
+                type: string
+                x-go-name: Message
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/entity
+    PaginationResponse:
+        properties:
+            limit:
+                format: int64
+                type: integer
+                x-go-name: Limit
+            page:
+                format: int64
+                type: integer
+                x-go-name: Page
+            records:
+                format: int64
+                type: integer
+                x-go-name: Records
+            total_page:
+                format: int64
+                type: integer
+                x-go-name: TotalPage
+            total_records:
+                format: int64
+                type: integer
+                x-go-name: TotalRecords
+        type: object
+        x-go-name: Pagination
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/base
+    RegisterUserRequestBody:
+        properties:
+            nickname:
+                description: |-
+                    Nickname of user will show as profile name
+                    in: string
+                type: string
+                x-go-name: Nickname
+            password:
+                description: |-
+                    Password of user
+                    in: string
+                type: string
+                x-go-name: Password
+            username:
+                description: |-
+                    Username of user
+                    in: string
+                type: string
+                x-go-name: Username
+        required:
+            - username
+            - password
+            - nickname
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/request
+    RegisterUserResponse:
+        properties:
+            id:
+                description: |-
+                    Id of user
+                    in: string
+                example: 4fc427da-91c7-45b5-b4f9-f6dcc646005f
+                type: string
+                x-go-name: Id
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/response
+    SuccessResponse:
+        properties:
+            data:
+                $ref: '#/definitions/DataResponse'
+            errors:
+                additionalProperties:
+                    type: string
+                description: |-
+                    Errors is the response message
+                    in: string
+                type: object
+                x-go-name: Errors
+            meta:
+                $ref: '#/definitions/MetaResponse'
+        type: object
+        x-go-name: responseHttp
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/base
+    TeacherCreateRequestBody:
+        properties:
+            degree:
+                description: |-
+                    Degree of the teacher
+                    in: string
+                type: string
+                x-go-name: Degree
+            experience:
+                description: |-
+                    Long time of experience in years
+                    in: int
+                format: int64
+                type: integer
+                x-go-name: Experience
+            job_title_id:
+                description: |-
+                    Job Title Id of the teacher
+                    in: string
+                type: string
+                x-go-name: JobTitleId
+            status:
+                description: |-
+                    Status of the teacher
+                    in: string
+                type: string
+                x-go-name: Status
+            user_id:
+                description: |-
+                    User Id of the teacher
+                    in: string
+                type: string
+                x-go-name: UserId
+        required:
+            - user_id
+            - job_title_id
+            - status
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/request
+    TeacherCreateResponse:
+        properties:
+            id:
+                description: |-
+                    Id of the teacher
+                    in: string
+                example: 4fc427da-91c7-45b5-b4f9-f6dcc646005f
+                type: string
+                x-go-name: Id
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/response
+    TeacherDeleteResponse:
+        properties:
+            success:
+                description: |-
+                    Success message of deleted data
+                    in: bool
+                example: true
+                type: boolean
+                x-go-name: Success
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/response
+    TeacherDetailResponse:
+        properties:
+            degree:
+                description: |-
+                    Last Education with degree
+                    in: string
+                example: B.Ed
+                type: string
+                x-go-name: Degree
+            email:
+                description: |-
+                    Email of the teacher
+                    in: string
+                example: teacher@school.edu
+                type: string
+                x-go-name: Email
+            experience:
+                description: |-
+                    Experience of the teacher
+                    in: int
+                example: 12
+                format: int64
+                type: integer
+                x-go-name: Experience
+            id:
+                description: |-
+                    Id of the teacher
+                    in: string
+                example: 4fc427da-91c7-45b5-b4f9-f6dcc646005f
+                type: string
+                x-go-name: Id
+            job_title_id:
+                description: |-
+                    Job Title Id of the teacher
+                    in: string
+                example: 4fc427da-91c7-45b5-b4f9-f6dcc646005f
+                type: string
+                x-go-name: JobTitleId
+            job_title_name:
+                description: |-
+                    Job Title Name of the teacher
+                    in: string
+                example: Principal
+                type: string
+                x-go-name: JobTitleName
+            nickname:
+                description: |-
+                    Nickname is the name of the teacher
+                    in: string
+                example: John
+                type: string
+                x-go-name: Nickname
+            status:
+                description: |-
+                    Status of the teacher
+                    in: string
+                example: CONTRACT
+                type: string
+                x-go-name: Status
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/response
+    TeacherListResponse:
+        properties:
+            degree:
+                description: |-
+                    Last Education with degree
+                    in: string
+                example: B.Ed
+                type: string
+                x-go-name: Degree
+            email:
+                description: |-
+                    Email of teacher
+                    in: string
+                example: teacher@school.edu
+                type: string
+                x-go-name: Email
+            experience:
+                description: |-
+                    Experience of the teacher
+                    in: int
+                example: 12
+                format: int64
+                type: integer
+                x-go-name: Experience
+            id:
+                description: |-
+                    Id of teacher
+                    in: string
+                example: 4fc427da-91c7-45b5-b4f9-f6dcc646005f
+                type: string
+                x-go-name: Id
+            nickname:
+                description: |-
+                    Name of teacher
+                    in: string
+                example: John Doe
+                type: string
+                x-go-name: Nickname
+            status:
+                description: |-
+                    Status of the teacher
+                    in: string
+                example: CONTRACT
+                type: string
+                x-go-name: Status
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/response
+    TeacherUpdateRequestBody:
+        properties:
+            degree:
+                description: |-
+                    Degree of the teacher
+                    in: string
+                type: string
+                x-go-name: Degree
+            experience:
+                description: |-
+                    Experience of the teacher
+                    in: int
+                format: int64
+                type: integer
+                x-go-name: Experience
+            job_title_id:
+                description: |-
+                    Job Title Id
+                    in: string
+                type: string
+                x-go-name: JobTitleId
+            status:
+                description: |-
+                    Status of the teacher
+                    in: string
+                type: string
+                x-go-name: Status
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/request
+    TeacherUpdateResponse:
+        properties:
+            degree:
+                description: |-
+                    Degree of the teacher
+                    in: string
+                example: B.Ed
+                type: string
+                x-go-name: Degree
+            experience:
+                description: |-
+                    Experience of the teacher
+                    in: int
+                example: 12
+                format: int64
+                type: integer
+                x-go-name: Experience
+            id:
+                description: |-
+                    Id of the teacher
+                    in: string
+                example: 4fc427da-91c7-45b5-b4f9-f6dcc646005f
+                type: string
+                x-go-name: Id
+            job_title_Id:
+                description: |-
+                    Job Title Id of the teacher
+                    in: string
+                example: 4fc427da-91c7-45b5-b4f9-f6dcc646005f
+                type: string
+                x-go-name: JobTitleId
+            status:
+                description: |-
+                    Status of the teacher
+                    in: string
+                example: CONTRACT
+                type: string
+                x-go-name: Status
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/response
+    UserProfileResponse:
+        properties:
+            Nickname:
+                description: |-
+                    Nickname of user
+                    in: string
+                example: John Doe
+                type: string
+            id:
+                description: |-
+                    Id of user
+                    in: string
+                example: 4fc427da-91c7-45b5-b4f9-f6dcc646005f
+                type: string
+                x-go-name: Id
+        type: object
+        x-go-package: github.com/DangerZombie/golang-gin-boilerplate/model/response
+info:
+    title: 'Gin Boilerplate API:'
+    version: "1.0"
+paths:
+    /teacher:
+        get:
+            description: Teacher List
+            operationId: TeacherListRequest
+            parameters:
+                - description: |-
+                    Page of the list
+                    in: int
+                  format: int64
+                  in: query
+                  name: page
+                  type: integer
+                  x-go-name: Page
+                - description: |-
+                    Limit row of each page
+                    in: int
+                  format: int64
+                  in: query
+                  name: limit
+                  type: integer
+                  x-go-name: Limit
+                - description: |-
+                    Sorting by column
+                    in: string
+                  in: query
+                  name: sort
+                  type: string
+                  x-go-name: Sort
+                - description: |-
+                    Direction of sorting
+                    in: string
+                  in: query
+                  name: dir
+                  type: string
+                  x-go-name: Dir
+                - description: |-
+                    Filtering name
+                    in: string
+                  in: query
+                  name: name
+                  type: string
+                  x-go-name: Name
+            responses:
+                "200":
+                    description: Success Response.
+                    schema:
+                        properties:
+                            data:
+                                properties:
+                                    record:
+                                        $ref: '#/definitions/TeacherListResponse'
+                                type: object
+                            meta:
+                                $ref: '#/definitions/MetaSingleSuccessResponse'
+            security:
+                - Bearer: []
+            tags:
+                - Teacher
+        post:
+            description: Add Teacher
+            operationId: TeacherCreateRequest
+            parameters:
+                - in: body
+                  name: body
+                  schema:
+                    $ref: '#/definitions/TeacherCreateRequestBody'
+                  x-go-name: Body
+            responses:
+                "200":
+                    description: Success Response.
+                    schema:
+                        properties:
+                            data:
+                                properties:
+                                    record:
+                                        $ref: '#/definitions/TeacherCreateResponse'
+                                type: object
+                            meta:
+                                $ref: '#/definitions/MetaSingleSuccessResponse'
+            security:
+                - Bearer: []
+            tags:
+                - Teacher
+    /teacher/{id}:
+        delete:
+            description: Delete Teacher
+            operationId: TeacherDeleteRequest
+            parameters:
+                - description: Id of teacher
+                  in: path
+                  name: id
+                  required: true
+                  type: string
+                  x-go-name: Id
+            responses:
+                "200":
+                    description: Success Response.
+                    schema:
+                        properties:
+                            data:
+                                properties:
+                                    record:
+                                        $ref: '#/definitions/TeacherDeleteResponse'
+                                type: object
+                            meta:
+                                $ref: '#/definitions/MetaSingleSuccessResponse'
+            security:
+                - Bearer: []
+            tags:
+                - Teacher
+        get:
+            description: Teacher Detail
+            operationId: TeacherDetailRequest
+            parameters:
+                - description: Id of the teacher
+                  in: path
+                  name: id
+                  required: true
+                  type: string
+                  x-go-name: Id
+            responses:
+                "200":
+                    description: Success Response.
+                    schema:
+                        properties:
+                            data:
+                                properties:
+                                    record:
+                                        $ref: '#/definitions/TeacherDetailResponse'
+                                type: object
+                            meta:
+                                $ref: '#/definitions/MetaSingleSuccessResponse'
+            security:
+                - Bearer: []
+            tags:
+                - Teacher
+        put:
+            description: Teacher Update
+            operationId: TeacherUpdateRequest
+            parameters:
+                - description: Id of the teacher
+                  in: path
+                  name: id
+                  required: true
+                  type: string
+                  x-go-name: Id
+                - in: body
+                  name: body
+                  schema:
+                    $ref: '#/definitions/TeacherUpdateRequestBody'
+                  x-go-name: Body
+            responses:
+                "200":
+                    description: Success Response.
+                    schema:
+                        properties:
+                            data:
+                                properties:
+                                    record:
+                                        $ref: '#/definitions/TeacherUpdateResponse'
+                                type: object
+                            meta:
+                                $ref: '#/definitions/MetaSingleSuccessResponse'
+            security:
+                - Bearer: []
+            tags:
+                - Teacher
+    /user/login:
+        post:
+            description: Login user
+            operationId: LoginRequest
+            parameters:
+                - in: body
+                  name: body
+                  schema:
+                    $ref: '#/definitions/LoginRequestBody'
+                  x-go-name: Body
+            responses:
+                "200":
+                    description: Success Response.
+                    schema:
+                        properties:
+                            data:
+                                properties:
+                                    record:
+                                        $ref: '#/definitions/LoginResponse'
+                                type: object
+                            meta:
+                                $ref: '#/definitions/MetaSingleSuccessResponse'
+            tags:
+                - User
+    /user/profile:
+        get:
+            description: User profile
+            operationId: UserProfileRequest
+            parameters:
+                - description: |-
+                    Id of user
+                    in: string
+                  in: query
+                  name: id
+                  type: string
+                  x-go-name: Id
+            responses:
+                "200":
+                    description: Success Response.
+                    schema:
+                        properties:
+                            data:
+                                properties:
+                                    record:
+                                        $ref: '#/definitions/UserProfileResponse'
+                                type: object
+                            meta:
+                                $ref: '#/definitions/MetaSingleSuccessResponse'
+            security:
+                - Bearer: []
+            tags:
+                - User
+    /user/register:
+        post:
+            description: Register user
+            operationId: RegisterUserRequest
+            parameters:
+                - in: body
+                  name: body
+                  schema:
+                    $ref: '#/definitions/RegisterUserRequestBody'
+                  x-go-name: Body
+            responses:
+                "200":
+                    description: Success Response.
+                    schema:
+                        properties:
+                            data:
+                                properties:
+                                    record:
+                                        $ref: '#/definitions/RegisterUserResponse'
+                                type: object
+                            meta:
+                                $ref: '#/definitions/MetaSingleSuccessResponse'
+            security:
+                - Bearer: []
+            tags:
+                - User
+produces:
+    - application/json
+    - text/html; charset=utf-8
+responses:
+    MetaSingleResponse:
+        description: ""
+        schema:
+            $ref: '#/definitions/MetaSingleSuccessResponse'
+schemes:
+    - http
+    - https
+securityDefinitions:
+    Bearer:
+        in: header
+        name: Authorization
+        type: apiKey
+swagger: "2.0"
